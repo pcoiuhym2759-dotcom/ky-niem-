@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang Web Kỉ Niệm</title>
+    <style>
+	#message-list {
+  	  max-width: 600px;
+  	  margin: 30px auto;}
+
+	.message-item {
+   	 background: #fff;
+   	 padding: 15px;
+   	 border-radius: 12px;
+   	 margin-bottom: 12px;
+   	 box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+   	 position: relative;}
+
+	.message-item .time {
+   	 font-size: 12px;
+   	 color: gray;}
+
+	.message-item button {
+ 	   position: absolute;
+ 	   top: 12px;
+  	  right: 12px;
+  	  border: none;
+  	  background: #ff6b81;
+   	 color: white;
+   	 padding: 5px 10px;
+   	 border-radius: 8px;
+   	 cursor: pointer;}
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f6f6f6;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 40px;
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+        }
+
+        section {
+            margin-top: 60px;
+        }
+
+        section h2 {
+            text-align: center;
+            color: #ff6f91;
+            margin-bottom: 25px;
+        }
+
+        /* GALLERY */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        /* VIDEO */
+        .videos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .video-box {
+            background-color: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .video-box video {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        /* FORM LỜI NHẮN */
+        .message-form {
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .message-form input,
+        .message-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        .message-form button {
+            background-color: #ff6f91;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .message-form button:hover {
+            background-color: #ff4f7a;
+        }
+
+        /* DANH SÁCH LỜI NHẮN */
+        .messages {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .message-box {
+            background-color: #fff0f5;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .message-box strong {
+            color: #ff6f91;
+        }
+
+        footer {
+            margin-top: 70px;
+            background-color: #ddd;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+        }
+	.video-box video,
+	.video-box iframe {
+ 	   width: 100%;
+ 	   max-width: 50vw;
+ 	   height: auto;
+  	  aspect-ratio: 16 / 9;
+  	  display: block;
+  	  margin: auto;}
+	.gallery img {
+  	  width: 350px;
+  	  height: 200px;
+ 	   object-fit: cover;
+  	  border-radius: 15px;}
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Trang Web Kỉ Niệm</h1>
+    <p>Nơi lưu giữ hình ảnh, video và lời nhắn của các bạn</p>
+</header>
+
+<div class="container">
+
+    <!-- HÌNH ẢNH -->
+    <section>
+        <h2>Hình ảnh kỉ niệm</h2>
+        <div class="gallery">
+            <img src="anh1.jpg">
+            <img src="anh2.jpg">
+            <img src="anh4.jpg">
+            <img src="anh5.jpg">
+        </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section>
+        <h2>Video kỉ niệm</h2>
+       <div class="video-box">
+    <video controls>
+        <source src="kiniemnhom.mp4" type="video/mp4">
+        Trình duyệt của bạn không hỗ trợ video.
+    </video>
+    <p>Video kỉ niệm của nhóm 4</p>
+	</div>
+    </section>
+
+    <!-- VIẾT LỜI NHẮN -->
+    <section>
+        <h2>Viết lời nhắn</h2>
+	<div id="message-list"></div>
+        <div class="message-form">
+            <input type="text" id="name" placeholder="Tên của bạn">
+            <textarea id="content" rows="4" placeholder="Tụi mình để lại cho nhau chút lời nói nhé..."></textarea>
+            <button onclick="addMessage()">Gửi lời nhắn</button>
+        </div>
+
+        <div class="messages" id="messageList"></div>
+    </section>
+
+</div>
+
+<footer>
+    © 2026 | VoMinhThu
+</footer>
+
+<script>
+    function addMessage() {
+        var name = document.getElementById("name").value;
+        var content = document.getElementById("content").value;
+
+        if (name === "" || content === "") {
+            alert("Vui lòng nhập đầy đủ tên và lời nhắn!");
+            return;
+        }
+
+        var messageBox = document.createElement("div");
+        messageBox.className = "message-box";
+        messageBox.innerHTML = "<strong>" + name + ":</strong><br>" + content;
+
+        document.getElementById("messageList").appendChild(messageBox);
+
+        document.getElementById("name").value = "";
+        document.getElementById("content").value = "";
+    }
+</script>
+<script>
+function addMessage() {
+    const name = document.getElementById("name").value;
+    const content = document.getElementById("content").value;
+
+    if (name === "" || content === "") {
+        alert("Nhập đầy đủ nha 😭");
+        return;
+    }
+
+    const message = { name, content };
+
+    let messages = JSON.parse(localStorage.getItem("messages")) || [];
+    messages.push(message);
+    localStorage.setItem("messages", JSON.stringify(messages));
+
+    displayMessages();
+
+    document.getElementById("name").value = "";
+    document.getElementById("content").value = "";
+}
+
+function displayMessages() {
+    const messages = JSON.parse(localStorage.getItem("messages")) || [];
+    const list = document.getElementById("message-list");
+
+    list.innerHTML = "";
+
+    messages.forEach(msg => {
+        list.innerHTML += `
+            <div class="message-item">
+                <strong>${msg.name}</strong>
+                <p>${msg.content}</p>
+            </div>
+        `;
+    });
+}
+
+displayMessages();
+</script>
+<script>
+function addMessage() {
+    const name = document.getElementById("name").value;
+    const content = document.getElementById("content").value;
+
+    const time = new Date().toLocaleString("vi-VN");
+
+    const message = { name, content, time };
+
+    let messages = JSON.parse(localStorage.getItem("messages")) || [];
+    messages.push(message);
+    localStorage.setItem("messages", JSON.stringify(messages));
+
+    displayMessages();
+
+    document.getElementById("name").value = "";
+    document.getElementById("content").value = "";
+}
+
+function displayMessages() {
+    const messages = JSON.parse(localStorage.getItem("messages")) || [];
+    const list = document.getElementById("message-list");
+
+    list.innerHTML = "";
+
+    messages.forEach((msg, index) => {
+        list.innerHTML += `
+            <div class="message-item">
+                <strong>${msg.name}</strong>
+                <span class="time">${msg.time}</span>
+                <p>${msg.content}</p>
+                <button onclick="deleteMessage(${index})">Xóa</button>
+            </div>
+        `;
+    });
+}
+
+function deleteMessage(index) {
+    let messages = JSON.parse(localStorage.getItem("messages")) || [];
+    messages.splice(index, 1);
+    localStorage.setItem("messages", JSON.stringify(messages));
+    displayMessages();
+}
+
+displayMessages();
+</script>
+
+</body>
+</html>
